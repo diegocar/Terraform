@@ -1,14 +1,13 @@
-resource "aws_autoscaling_group" "web" {
+resource "aws_autoscaling_group" "ASG-back" {
   name              = "${var.project_name}-asg"
   max_size          = 3
   min_size          = 0
-  desired_capacity  = 2
-  health_check_type = "ELB"
+  desired_capacity  = 0
 
   load_balancers = ["${aws_elb.web.name}"]
 
   launch_configuration = "${aws_launch_configuration.web.name}"
-  vpc_zone_identifier  = "${data.aws_subnet_ids.example.ids}"
+  vpc_zone_identifier  = ["${aws_subnet.Priv_subnet.id}"]
 
   tags = [
     {
@@ -20,6 +19,6 @@ resource "aws_autoscaling_group" "web" {
       key                 = "project"
       value               = "dcarvajalc-rampup"
       propagate_at_launch = true
-    },
+    }
   ]
 }
