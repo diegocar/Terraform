@@ -1,0 +1,5 @@
+Back/keypair.tf
+Front/keypair.tf
+errored.tfstate
+Back/*.exe
+*/.terraform
