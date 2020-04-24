@@ -1,7 +1,7 @@
 resource "aws_security_group" "allow_all" {
   name        = "${var.project_name}-allow_all"
   description = "Allow all inbound traffic"
-  vpc_id      = "${data.aws_vpc.selected.id}"
+  vpc_id      = "${data.aws_vpc.Movies_vpc.id}"
   tags        = var.instance_tags
 
   ingress {    
@@ -22,7 +22,7 @@ resource "aws_security_group" "allow_all" {
 resource "aws_security_group" "ssh_ip" {
   name        = "ssh_ipLocal_${var.project_name}"
   description = "Allow only my ip connection"
-  vpc_id      = "${data.aws_vpc.selected.id}"
+  vpc_id      = "${data.aws_vpc.Movies_vpc.id}"
   tags        = var.instance_tags
 
   ingress {    
@@ -43,7 +43,7 @@ resource "aws_security_group" "ssh_ip" {
 resource "aws_security_group" "ssh_jenkis_ansible" {
   name        = "ssh_jenkinsIP-${var.project_name}"
   description = "Allow only jenkis ip connection"
-  vpc_id      = "${data.aws_vpc.selected.id}"
+  vpc_id      = "${data.aws_vpc.Movies_vpc.id}"
   tags        = var.instance_tags
 
   ingress {    
@@ -71,7 +71,7 @@ resource "aws_security_group" "ssh_jenkis_ansible" {
 resource "aws_security_group" "node_Frontport" {
   name        = "node_port_${var.project_name}"
   description = "Allow only port 3030 for the api"
-  vpc_id      = "${data.aws_vpc.selected.id}"
+  vpc_id      = "${data.aws_vpc.Movies_vpc.id}"
   tags        = var.instance_tags
 
   ingress {    

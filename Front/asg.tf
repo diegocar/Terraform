@@ -7,7 +7,7 @@ resource "aws_autoscaling_group" "ASGFront" {
   load_balancers = ["${aws_elb.ELBFront.name}"]
 
   launch_configuration = "${aws_launch_configuration.L_C_front.name}"
-  vpc_zone_identifier  = "${data.aws_subnet_ids.example.ids}"
+  vpc_zone_identifier  = ["${data.aws_subnet.Pub_F_subnet.id}"]
 
   tags = [
     {

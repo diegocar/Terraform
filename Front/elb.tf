@@ -1,6 +1,6 @@
 resource "aws_elb" "ELBFront" {
   name    = "${var.project_name}-elb-web"
-  subnets = "${data.aws_subnet_ids.example.ids}"
+  subnets = ["${data.aws_subnet.Pub_F_subnet.id}"]
 
   security_groups = ["${aws_security_group.node_Frontport.id}"]
 

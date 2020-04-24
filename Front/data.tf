@@ -16,10 +16,14 @@ data "aws_ami" "ubuntu" {
 }
 
 
-data "aws_vpc" "selected" {
-  default = true
+data "aws_vpc" "Movies_vpc" {
+  cidr_block = "10.2.0.0/16"
 }
 
-data "aws_subnet_ids" "example" {
-  vpc_id = "${data.aws_vpc.selected.id}"
+data "aws_subnet" "Pub_F_subnet" {
+  vpc_id = "${data.aws_vpc.Movies_vpc.id}"
+  filter {
+    name   = "tag:Name"
+    values = ["Tf Public Subnet"]
+  }
 }
