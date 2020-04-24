@@ -1,8 +1,8 @@
-resource "aws_elb" "web" {
-  name    = "${var.project_name}-elb-web"
-  subnets = ["${aws_subnet.Pub_subnet.id}"]
+resource "aws_elb" "ELBBack" {
+  name    = "${var.project_name}-elb-api"
+  subnets = ["${aws_subnet.Priv_subnet.id}"]
 
-  security_groups = ["${aws_security_group.allow_all.id}"]
+  security_groups = ["${aws_security_group.node_Backport.id}"]
 
   listener {
     instance_port     = 3000

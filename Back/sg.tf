@@ -20,7 +20,7 @@ resource "aws_security_group" "allow_all" {
 }
 
 resource "aws_security_group" "ssh_ip" {
-  name        = "${var.project_name}-ssh_ip"
+  name        = "ssh_ipLocal_${var.project_name}"
   description = "Allow only my ip connection"
   vpc_id      = "${aws_vpc.movies.id}"
   tags        = var.instance_tags
@@ -41,7 +41,7 @@ resource "aws_security_group" "ssh_ip" {
 }
 
 resource "aws_security_group" "ssh_jenkis_ansible" {
-  name        = "${var.project_name}-ssh_ip_jenkins"
+  name        = "ssh_jenkinsIP-${var.project_name}"
   description = "Allow only jenkis ip connection"
   vpc_id      = "${aws_vpc.movies.id}"
   tags        = var.instance_tags
@@ -68,8 +68,8 @@ resource "aws_security_group" "ssh_jenkis_ansible" {
   }
 }
 
-resource "aws_security_group" "node_port" {
-  name        = "${var.project_name}-node_port"
+resource "aws_security_group" "node_Backport" {
+  name        = "node_port_${var.project_name}"
   description = "Allow only port 3000 for the api"
   vpc_id      = "${aws_vpc.movies.id}"
   tags        = var.instance_tags
@@ -78,7 +78,7 @@ resource "aws_security_group" "node_port" {
     from_port = 3000
     to_port   = 3000
     protocol  = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["10.2.0.0/16"]
   }
 
   ingress {    

@@ -1,8 +1,8 @@
-resource "aws_elb" "web" {
+resource "aws_elb" "ELBFront" {
   name    = "${var.project_name}-elb-web"
   subnets = "${data.aws_subnet_ids.example.ids}"
 
-  security_groups = ["${aws_security_group.allow_all.id}"]
+  security_groups = ["${aws_security_group.node_Frontport.id}"]
 
   listener {
     instance_port     = 3030
