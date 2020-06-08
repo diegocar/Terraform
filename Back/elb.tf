@@ -18,4 +18,6 @@ resource "aws_elb" "ELBBack" {
     target              = "HTTP:3000/"
     interval            = 10
   }
+
+  tags = var.instance_tags
 }
